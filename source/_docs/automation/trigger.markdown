@@ -56,7 +56,7 @@ automation:
 
 ### Numeric state trigger
 
-Fires when numeric value of an entity's state crosses a given threshold. On state change of a specified entity, attempts to parse the state as a number and fires if value is changing from above to below or from below to above the given threshold.
+Fires when the numeric value of an entity's state (or attribute's value if using the `attribute` property) crosses a given threshold. On state change of a specified entity, attempts to parse the state as a number and fires if the value is changing from above to below or from below to above the given threshold.
 
 {% raw %}
 
@@ -70,8 +70,9 @@ automation:
     # At least one of the following required
     above: 17
     below: 25
-
-    # If given, will trigger when condition has been for X time, can also use days and milliseconds.
+    # If given, will trigger when the value of the given attribute for the given entity changes
+    attribute: attribute_name
+    # If given, will trigger when the condition has been true for X time; you can also use days and milliseconds.
     for:
       hours: 1
       minutes: 10
@@ -151,9 +152,68 @@ automation:
     from: "not_home"
     # Optional
     to: "home"
+```
 
-    # If given, will trigger when state has been the to state for X time.
-    for: "01:10:05"
+#### Holding a state
+
+You can use `for` to have the state trigger only fire if the state holds for some time.
+
+This example fires, when the entity state changed to `"on"` and holds that
+state for 30 seconds:
+
+```yaml
+automation:
+  trigger:
+    platform: state
+    entity_id: light.office
+    # Must stay "on" for 30 seconds
+    to: "on"
+    for: "00:00:30"
+```
+
+You can also fire the trigger when the state value changed from a specific
+state, but hasn't returned to that state value for the specified time.
+
+This can be useful, e.g., checking if a media player hasn't turned "off" for
+the time specified, but doesn't care about "playing" or "paused".
+
+```yaml
+automation:
+  trigger:
+    platform: state
+    entity_id: media_player.kitchen
+    # Not "off" for 30 minutes
+    from: "off"
+    for: "00:30:00"
+```
+
+Please note, that when using `from`, `to` and `for`, only the value of the
+`to` option is considered for the time specified.
+
+In this example, the trigger fires if the state value of the entity remains the
+same for `for` the time specified, regardless of the current state value.
+
+```yaml
+automation:
+  trigger:
+    platform: state
+    entity_id: media_player.kitchen
+    # The media player remained in its current state for 1 hour
+    for: "01:00:00"
+```
+
+When the `attribute` option is specified, all of the above works, but only
+applies to the specific state value of that attribute.
+
+For example, this trigger only fires if the boiler was heating for 10 minutes:
+
+```yaml
+automation:
+  trigger:
+    platform: state
+    entity_id: climate.living_room
+    attribute: hvac_action
+    state: "heating"
 ```
 
 You can also use templates in the `for` option.
@@ -472,4 +532,18 @@ automation:
       # our second trigger is the sunset
     - platform: sun
       event: sunset
+```
+
+### Multiple Entity IDs for the same Trigger
+
+It is possible to specify multiple entities for the same trigger. To do so add multiple entities using a nested list. The trigger will fire and start, [processing](#what-are-triggers) your automation each time the trigger is true for each entity listed.
+
+```yaml
+automation:
+  trigger:
+    - platform: state
+      entity_id: 
+        - sensor.one
+        - sensor.two
+        - sensor.three
 ```

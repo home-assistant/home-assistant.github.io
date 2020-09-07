@@ -73,6 +73,7 @@ Supported abbreviations:
     'aux_cmd_t':           'aux_command_topic',
     'aux_stat_tpl':        'aux_state_template',
     'aux_stat_t':          'aux_state_topic',
+    'avty'                 'availability',
     'avty_t':              'availability_topic',
     'away_mode_cmd_t':     'away_mode_command_topic',
     'away_mode_stat_tpl':  'away_mode_state_template',
@@ -135,6 +136,8 @@ Supported abbreviations:
     'json_attr':           'json_attributes',
     'json_attr_t':         'json_attributes_topic',
     'json_attr_tpl':       'json_attributes_template',
+    'max_mirs':            'max_mireds',
+    'min_mirs':            'min_mireds',
     'max_temp':            'max_temp',
     'min_temp':            'min_temp',
     'mode_cmd_t':          'mode_command_topic',
@@ -272,6 +275,7 @@ The following software has built-in support for MQTT discovery:
 - [Zwave2Mqtt](https://github.com/OpenZWave/Zwave2Mqtt) (starting with 2.0.1)
 - [IOTLink](https://iotlink.gitlab.io) (starting with 2.0.0)
 - [WyzeSense2MQTT](https://github.com/raetha/wyzesense2mqtt)
+- [MiFlora MQTT Daemon](https://github.com/ThomDietrich/miflora-mqtt-daemon)
 
 ## Examples
 

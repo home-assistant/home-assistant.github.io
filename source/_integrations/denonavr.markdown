@@ -19,6 +19,7 @@ Known supported devices:
 - Denon AVR-X1000
 - Denon AVR-X1200W
 - Denon AVR-X1300W
+- Denon AVR-X1400H
 - Denon AVR-X1500H
 - Denon AVR-X1600H
 - Denon AVR-X2000
@@ -50,6 +51,7 @@ Known supported devices:
 - Marantz SR5008
 - Marantz SR5011
 - Marantz SR6007 - SR6012
+- Marantz SR8015
 - Marantz NR1504
 - Marantz NR1506
 - Marantz NR1602
