@@ -15,6 +15,7 @@ source/_integrations/adguard.markdown @frenck
 source/_integrations/advantage_air.markdown @Bre77
 source/_integrations/agent_dvr.markdown @ispysoftware
 source/_integrations/airly.markdown @bieniu
+source/_integrations/airtouch4.markdown @LonePurpleWolf
 source/_integrations/airvisual.markdown @bachya
 source/_integrations/alarmdecoder.markdown @ajschmidt8
 source/_integrations/alexa.markdown @home-assistant/cloud @ochlocracy
