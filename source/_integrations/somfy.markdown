@@ -17,7 +17,7 @@ ha_platforms:
   - switch
 ---
 
-The Somfy integration will allow users to integrate their Somfy devices into Home Assistant using the [official API](https://developer.somfy.com/somfy-open-api/apis), unlike the [Tahoma](/integrations/tahoma/) integration.
+The Somfy integration will allow users to integrate their Somfy devices into Home Assistant using the [official API](https://developer.somfy.com/somfy-open-api/apis), unlike the [Overkiz by Somfy](/integrations/overkiz/) integration.
 
 ## Installation
 
@@ -72,30 +72,12 @@ optimistic:
 
 {% include integrations/config_flow.md %}
 
-### Potential duplicate with the Tahoma integration
+## Known limitations
 
-If you use the [Tahoma](/integrations/tahoma) integration, you will have to exclude the covers added by this one. Otherwise, they will be added twice.
+### Limited device support
 
-```yaml
-# Example configuration.yaml entry
-tahoma:
-  username: YOUR_USERNAME
-  password: YOUR_PASSWORD
-  exclude:
-    [
-      "rts:RollerShutterRTSComponent",
-      "rts:CurtainRTSComponent",
-      "rts:BlindRTSComponent",
-      "rts:VenetianBlindRTSComponent",
-      "rts:DualCurtainRTSComponent",
-      "rts:ExteriorVenetianBlindRTSComponent",
-      "io:ExteriorVenetianBlindIOComponent",
-      "io:RollerShutterUnoIOComponent",
-      "io:RollerShutterWithLowSpeedManagementIOComponent",
-      "io:RollerShutterVeluxIOComponent",
-      "io:RollerShutterGenericIOComponent",
-      "io:WindowOpenerVeluxIOComponent",
-      "io:VerticalExteriorAwningIOComponent",
-      "io:HorizontalAwningIOComponent",
-    ]
-```
+Unfortunately, the official Somfy API has limited device support. If your devices are not recognized in Home Assistant, you could use the [Overkiz by Somfy integration](/integrations/overkiz/) which has more features and devices supported.
+
+### Execution queue has a soft limit (10)
+
+The Somfy API has a limit of 10 actions that can be executed in parallel. Currently this can only be solved by adding a time-out in between your executions, where you need to take the execution time into account.
