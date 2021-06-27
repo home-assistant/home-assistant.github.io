@@ -80,3 +80,9 @@ The Hue API doesn't activate scenes directly; rather, they must be associated wi
 Neither group names nor scene names are guaranteed unique in Hue. If you are observing unexpected behavior from calling Hue scenes in Home Assistant, make the names of your Hue scenes more specific in the Hue app.
 
 The Hue hub has limited space for scenes and will delete scenes if new ones get created that would overflow that space. The API documentation says this is based on the scenes that are "least recently used."
+
+## Using Switches in Automations
+
+This integration will detect button presses from the various switch accessories in Hue for use in automations. There is no entity for switch presses. The preferred way to automate presses is via device triggers. With a trigger type of "Device" selected, the Hue switch should appear with the same name as it has in the Hue mobile app. A list of available triggers will then be automatically populated.
+
+Device triggers are preferred, however, automations can also be configured using events. This method can provide some additional functionality. For example, pressing the dimmer switch "On" button includes in the event how many times it has been pressed in succession. To determine the structure and values of the event, use the events tab of developer tools listening for `hue_event`.
