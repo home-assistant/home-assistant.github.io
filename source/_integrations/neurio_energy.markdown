@@ -11,17 +11,17 @@ ha_platforms:
   - sensor
 ---
 
-Integrate your [Neurio](https://neur.io/) meter information into Home Assistant. To get an API key and secret, login to your [Neurio account](https://my.neur.io/#settings/applications/register) and register an application. Note the Homepage URL and Callback URL are optional.
+Integrate your [Neurio](https://neur.io/) meter information into Home Assistant. To get an API key and secret, login to your [Neurio account](https://my.neur.io/#settings/applications/register) and register an application.
 
 To enable this sensor in your installation, add the following to your `configuration.yaml` file:
 
 ```yaml
 # Example configuration.yaml entry
 sensor:
-  platform: neurio_energy
-  api_key: CLIENT_ID
-  api_secret: CLIENT_SECRET
-  sensor_id: SENSOR_ID
+  - platform: neurio_energy
+    api_key: "CLIENT_ID"
+    api_secret: "CLIENT_SECRET"
+    sensor_id: "SENSOR_ID"
 ```
 
 Two sensors will be created with the following names:
