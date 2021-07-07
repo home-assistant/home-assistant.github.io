@@ -85,6 +85,8 @@ device_tracker:
 In the above example, Nmap will be call with the process:
 `nmap -oX - 192.168.1.1/24 10.0.0.2 10.0.0.15 -F --host-timeout 5s`
 
+By default, Host detection is setup via Nmap's "fast scan" (`-F`) of the most frequently used 100 ports, with a host timeout of 5 seconds. You can find all Nmap configuration options in the [Reference guide](https://nmap.org/book/man.html).
+
 An example of how the Nmap scanner can be customized:
 
 ### Linux capabilities
