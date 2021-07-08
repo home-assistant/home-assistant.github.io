@@ -4,9 +4,11 @@ description: Instructions on how to connect your SAJ Solar Inverter to Home Assi
 ha_category:
   - Energy
 ha_iot_class: Local Polling
+ha_config_flow: true
 ha_release: '0.100'
 ha_codeowners:
   - '@fredericvl'
+  - '@sanyatuning'
 ha_domain: saj
 ha_platforms:
   - sensor
@@ -19,44 +21,13 @@ This sensor uses the web interface and to use it, you have to be able to connect
 There is a difference between inverters that are connected via an ethernet module and those connected via a Wi-Fi module.
 The Wi-Fi module requires a username and password for authentication where the ethernet module does not.
 
-## Configuration
+{% include integrations/config_flow.md %}
 
-To enable this sensor, add the following lines to your `configuration.yaml` file:
-
-```yaml
-# Example configuration.yaml entry
-sensor:
-  - platform: saj
-    host: IP_ADDRESS_OF_DEVICE
-```
-
-{% configuration %}
-host:
-  description: "The IP address of the SAJ Solar Inverter."
-  required: true
-  type: string
-name:
-  description: "An optional name for your SAJ Solar Inverter."
-  required: false
-  type: string
-type:
-  description: "Type of connection module: 'ethernet' or 'wifi'"
-  required: false
-  default: ethernet
-  type: string
-username:
-  description: "Username for logging in to SAJ Solar Inverter (only used when type is 'wifi' but can be skipped if the inverter still has the default credentials set: admin/admin)"
-  required: false
-  type: string
-password:
-  description: "Password for logging in to SAJ Solar Inverter (only used when type is 'wifi' but can be skipped if the inverter still has the default credentials set: admin/admin)"
-  required: false
-  type: string
-{% endconfiguration %}
+Note: You should set up fixed/static IP address for the inverter.
 
 ## Sensors
 
-Sensors available in the library:
+Sensors available in the integration:
 
 | name               | Unit | Description                                                                  |
 |--------------------|------|:-----------------------------------------------------------------------------|
@@ -69,15 +40,3 @@ Sensors available in the library:
 | total_co2_reduced  | kg   | Total CO2 in kg reduced.                                                     |
 | temperature        | °C   | Temperature of the inverter.                                                 |
 | state              | N/A  | Live state of the inverter.                                                  |
-
-## Full configuration example for Wi-Fi inverters
-
-```yaml
-sensor:
-  - platform: saj
-    name: MY_INVERTER_NAME
-    host: IP_ADDRESS_OF_DEVICE
-    type: wifi
-    username: USERNAME
-    password: PASSWORD
-```
